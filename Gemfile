@@ -70,4 +70,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  # shoulda matchers
+  gem 'shoulda-matchers', '~> 6.1'
 end
