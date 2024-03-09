@@ -35,7 +35,7 @@ class LineItemsController < ApplicationController
         #     :cart,  partial: 'layouts/cart', locals: { cart: @cart }
         #   )
         # }
-        format.turbo_stream
+        format.turbo_stream { @current_item = @line_item }
         format.html { redirect_to store_index_url }
         format.json { render :show, status: :created, location: @line_item }
       else
