@@ -27,7 +27,6 @@
     </ul>
   </nav>
   <main class="container mx-auto mt-4 px-5 flex">
-    <%= "<p>#{session[:counter]}</p>".html_safe unless session[:counter].nil? || session[:counter] < 5 %>
     <%= yield %>
   </main>
 </section>
