@@ -8,5 +8,4 @@ one:
 two:
   product: ruby
   order: one
-  cart: two
   price: 1

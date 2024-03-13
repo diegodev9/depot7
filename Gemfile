@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# xml serializer
+gem 'activemodel-serializers-xml', '~> 1.0', '>= 1.0.2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -64,6 +67,9 @@ group :development do
 
   # live reload
   gem "rails_live_reload"
+
+  # letter opener
+  gem 'letter_opener'
 end
 
 group :test do

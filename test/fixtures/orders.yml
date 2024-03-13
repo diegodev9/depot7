@@ -3,7 +3,7 @@
 one:
   name: MyString
   address: MyText
-  email: email1@email.com
+  email: dave@example.org
   pay_type: Check
 
 two:
