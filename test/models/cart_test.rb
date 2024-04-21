@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class CartTest < ActiveSupport::TestCase
   def setup
@@ -17,7 +19,7 @@ class CartTest < ActiveSupport::TestCase
   test 'add duplicate product' do
     @cart.add_product(@book_one).save!
     @cart.add_product(@book_one).save!
-    assert_equal 2*@book_one.price, @cart.total_price
+    assert_equal 2 * @book_one.price, @cart.total_price
     assert_equal 1, @cart.line_items.size
     assert_equal 2, @cart.line_items[0].quantity
   end

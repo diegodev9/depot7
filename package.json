@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "tailwindcss": "^3.4.1"
+    "@rails/actiontext": "^7.1.3-2",
+    "stimulus-language-server": "^0.2.1",
+    "tailwindcss": "^3.4.1",
+    "trix": "^2.1.0"
   }
 }

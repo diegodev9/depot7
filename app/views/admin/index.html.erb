@@ -1,0 +1,10 @@
+<div class="w-full">
+  <%= render 'store/notice' %>
+
+  <h1 class="mx-auto text-lg font-boldtext-4xl">Welcome</h1>
+
+  <p>
+    It's <%= l(Time.now, format: "%d/%m/%y - %H:%M") %>.
+    We have <%= pluralize(@total_orders, 'order') %>.
+  </p>
+</div>

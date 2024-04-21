@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'active_model/serializers/xml'
 require 'pago'
-
 
 class Order < ApplicationRecord
   include ActiveModel::Serializers::Xml
@@ -32,7 +33,7 @@ class Order < ApplicationRecord
       payment_method = :check
       payment_details[:routing] = pay_type_params[:routing_number]
       payment_details[:account] = pay_type_params[:account_number]
-    when "Credit Card"
+    when 'Credit Card'
       payment_method = :credit_card
       month, year = pay_type_params[:expiration_date].split(//)
       payment_details[:cc_num] = pay_type_params[:credit_card_number]
@@ -45,14 +46,12 @@ class Order < ApplicationRecord
 
     payment_result = Pago.make_payment(
       order_id: id,
-      payment_method: payment_method,
-      payment_details: payment_details
+      payment_method:,
+      payment_details:
     )
 
-    if payment_result.succeeded?
-      OrderMailer.received(self).deliver_later
-    else
-      raise payment_resutlt.error
-    end
+    raise payment_resutlt.error unless payment_result.succeeded?
+
+    OrderMailer.received(self).deliver_later
   end
 end

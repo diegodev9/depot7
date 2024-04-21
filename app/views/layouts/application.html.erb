@@ -13,6 +13,12 @@
 
 <body>
 <header class="bg-green-700">
+  <aside data-controller="locale">
+    <%= form_tag root_path, class: 'locale' do %>
+      <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()' %>
+      <%= submit_tag 'submit', data: { 'locale-target': 'submit' } %>
+    <% end %>
+  </aside>
   <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
   <h1><%= @page_title %></h1>
 </header>
@@ -20,11 +26,27 @@
   <nav class="bg-green-900 p-6">
     <%= render partial: 'layouts/cart', locals: { cart: @cart } %>
     <ul class="text-gray-300 leading-8">
-      <li><a href="/">Home</a></li>
-      <li><a href="/questions">Questions</a></li>
-      <li><a href="/news">News</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a href="/"><%= t('.home') %></a></li>
+      <li><a href="/questions"><%= t('.questions') %></a></li>
+      <li><a href="/news"><%= t('.news') %></a></li>
+      <li><a href="/contact"><%= t('.contact') %></a></li>
     </ul>
+    <% if session[:user_id] %>
+      <hr class="my-2">
+      <ul class="text-gray-300 leading-8">
+        <li><%= link_to t('.orders'), orders_path %></li>
+        <li><%= link_to t('.products'), products_path %></li>
+        <li><%= link_to t('.users'), users_path %></li>
+        <li><%= link_to t('.support_request'), support_requests_path %></li>
+        <li class="mt-3"><%= link_to t('.logout'), logout_path, data: { turbo_method: :delete } %></li>
+      </ul>
+    <% else %>
+      <% unless controller_name == 'sessions' %>
+        <ul class="text-gray-300 leading-8">
+          <li class="mt-3"><%= link_to t('.login'), login_path %></li>
+        </ul>
+      <% end %>
+    <% end %>
   </nav>
   <main class="container mx-auto mt-4 px-5 flex">
     <%= yield %>

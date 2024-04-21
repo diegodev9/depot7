@@ -28,4 +28,75 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  thanks: "Tnank you for your order"
+
+  errors:
+    template:
+      header: ""
+      body: ""
+  activerecord:
+    models:
+      order: ""
+
+  layouts:
+    application:
+      title: "The Pragmatic Bookshelf"
+      home: "Home"
+      questions: "Questions"
+      news: "News"
+      contact: "Contact"
+      orders: "Orders"
+      products: "Products"
+      users: "Users"
+      logout: "Logout"
+      login: "Login"
+      support_request: "Support"
+
+  store:
+    index:
+      title_html: "Your Pragmatic Catalog"
+    product:
+      add_html: "Add to cart"
+
+  carts:
+    cart:
+      title: "Your Cart"
+      empty: "Empty cart"
+      checkout: "Checkout"
+
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n"
+
+  orders:
+    new:
+      title: "Please enter your details"
+      back: ""
+    form:
+      pay_type: "Pay type"
+      email: "Email"
+      address: "Address"
+      name: "Name"
+      submit: "Confirm"
+      select_pay_type: "Select a payment method"
+      pay_types:
+        Purchase Order: "Purchase Order"
+        Credit Card: "Credit Card"
+        Check: "Check"
+    cc:
+      expiration_date: ""
+      cc_number: ""
+    check:
+      routing_number: ""
+      account_number: ""
+    po:
+      po_number: ""
+    create:
+      thanks: ""
+
+

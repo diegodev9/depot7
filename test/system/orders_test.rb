@@ -1,10 +1,12 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class OrdersTest < ApplicationSystemTestCase
   include ActiveJob::TestHelper
 
   test 'check dynamic fields' do
-    visit store_index_url
+    visit root_url
     click_on 'Add to Cart', match: :first
     click_on 'Checkout'
 
@@ -40,7 +42,7 @@ class OrdersTest < ApplicationSystemTestCase
     LineItem.delete_all
     Order.delete_all
 
-    visit store_index_url
+    visit root_url
     click_on 'Add to Cart', match: :first
     click_on 'Checkout'
     fill_in 'Name', with: 'Dave Thomas'
@@ -65,11 +67,11 @@ class OrdersTest < ApplicationSystemTestCase
     assert_equal 'Dave Thomas', order.name
     assert_equal '123 Main Street', order.address
     assert_equal 'dave@example.com', order.email
-    assert_equal'Check', order.pay_type
+    assert_equal 'Check', order.pay_type
     assert_equal 1, order.line_items.count
 
     mail = ActionMailer::Base.deliveries.last
-    assert_equal ["dave@example.com"], mail.to
+    assert_equal ['dave@example.com'], mail.to
     assert_equal 'Sam Ruby <depot@example.com>', mail[:from].value
     assert_equal 'Pragmatic Store Order Confirmation', mail.subject
   end

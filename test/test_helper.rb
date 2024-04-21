@@ -1,6 +1,9 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+# frozen_string_literal: true
+
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
+require 'authentication_helper'
 
 module ActiveSupport
   class TestCase
@@ -11,12 +14,12 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
-  end
 
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :minitest
-      with.library :rails
+    Shoulda::Matchers.configure do |config|
+      config.integrate do |with|
+        with.test_framework :minitest
+        with.library :rails
+      end
     end
   end
 end

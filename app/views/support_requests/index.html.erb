@@ -1,0 +1,61 @@
+<ul class="list-disc">
+  <% @support_requests.each do |support_request| %>
+    <li class="my-5">
+      <h1 class="font-bold">
+        On <%= support_request.created_at.to_formatted_s(:long) %>
+        <code><%= support_request.email %></code> writes:
+      </h1>
+      <blockquote class="pl-10 my-5">
+        <h2 class="font-bold"><%= support_request.subject %></h2>
+        <p><%= support_request.body %></p>
+      </blockquote>
+      <% if support_request.order.present? %>
+        <h3 class="font-bold">Recent Order</h3>
+        <dl>
+          <dt class="float-left mr-2 font-bold">Name</dt>
+          <dd><%= support_request.order.name %></dd>
+
+          <dt class="float-left mr-2 font-bold">Email</dt>
+          <dd><%= support_request.order.email %></dd>
+
+          <dt class="float-left mr-2 font-bold">Address</dt>
+          <dd><%= support_request.order.address %></dd>
+
+          <dt class="float-left mr-2 font-bold">PayType</dt>
+          <dd><%= support_request.order.pay_type %></dd>
+
+          <dt class="float-left mr-2 font-bold">Line Items</dt>
+          <dd>
+            <ul>
+              <% support_request.order.line_items.each do |line_item| %>
+                <li>
+                  <%= line_item.product.title %>
+                  (<%= line_item.product.price %>)
+                </li>
+              <% end %>
+            </ul>
+          </dd>
+        </dl>
+      <% else %>
+        <h3 class="notice">No associated order</h3>
+      <% end %>
+      <% if support_request.response.blank? %>
+        <%= form_with(model: support_request, local: true, class: "depot_form mt-5") do |form| %>
+          <div class="field">
+            <%= form.label :response, "Write Response" %>
+            <%= form.rich_text_area :response, id: :support_request_response %>
+          </div>
+          <div class="actions py-3">
+            <%= form.submit "Send Response", class: "px-3 md:px-4 py-1 md:py-2 bg-sky-600 text-white border border-sky-600 rounded-lg hover:bg-sky-700 mb-5" %>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><b>Our Response</b></h4>
+        <p class="ml-4">
+          <%= support_request.response %>
+        </p>
+      <% end %>
+      <hr>
+    </li>
+  <% end %>
+</ul>

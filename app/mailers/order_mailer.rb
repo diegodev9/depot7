@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderMailer < ApplicationMailer
   default from: 'Sam Ruby <depot@example.com>'
 
